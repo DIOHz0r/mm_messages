@@ -1,0 +1,4 @@
+access mm_messages chat:
+  title: 'Access chat functionality'
+  description: 'Allows users to access the chat.'
+  restrict access: TRUE

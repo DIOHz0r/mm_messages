@@ -1,0 +1,11 @@
+<div class="chat-history-content" id="chat-history-content">
+  {% if messages %}
+    {% include '@mm_messages/mm-messages-chat-balloons.html.twig' %}
+  {% elseif receiver_name %}
+    <h1>New chat with {{ receiver_name }}, please type your message</h1>
+  {% else %}
+    <h1>Select the user to start chatting.</h1>
+  {% endif %}
+  <span id="ajax-wrapper"></span>
+</div>
+<div id="chat-form-container">{{ form }}</div>

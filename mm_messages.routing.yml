@@ -1,0 +1,21 @@
+mm_messages.chats:
+  path: '/mm_messages/chats'
+  defaults:
+    _controller: '\Drupal\mm_messages\Controller\ChatController::chatPage'
+    _title: 'User Chats'
+  requirements:
+    _permission: 'access mm_messages chat'
+
+mm_messages.load_chat_history:
+  path: '/mm_messages/load-chat-history'
+  defaults:
+    _controller: '\Drupal\mm_messages\Controller\ChatController::loadChatHistory'
+  requirements:
+    _permission: 'access mm_messages chat'
+
+mm_messages.load_chat_item:
+  path: '/mm_messages/load-chat-item'
+  defaults:
+    _controller: '\Drupal\mm_messages\Controller\ChatController::loadChatItem'
+  requirements:
+    _permission: 'access mm_messages chat'

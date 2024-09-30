@@ -1,0 +1,180 @@
+.mm-messages-chat-container {
+  display: flex;
+  height: 600px;
+}
+
+.chat-sidebar {
+  width: 30%;
+  border-right: 1px solid #ddd;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.chat-list {
+  margin-bottom: 20px;
+}
+
+.chat-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.chat-item:hover {
+  background-color: #f5f5f5;
+}
+
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.last-message {
+  margin-left: auto;
+  font-size: 0.9em;
+  color: #888;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.timestamp {
+  color: #aaa;
+  margin-left: 10px;
+  font-size: 0.8em;
+  display: inline-block;
+  float: right;
+  padding: 0 0 0 7px;
+  position: relative;
+  bottom: -4px;
+}
+
+.unread-indicator {
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  padding: 2px 5px;
+  margin-left: 5px;
+}
+
+.chat-history {
+  width: 70%;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.chat-history-content {
+  max-height: 70%;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.chat-history-content h1 {
+  text-align: center;
+  margin: 1em;
+  padding: 1em;
+}
+
+.chat-message {
+  color: #000;
+  clear: both;
+  line-height: 18px;
+  font-size: 15px;
+  padding: 8px;
+  margin: 8px 0;
+  max-width: 85%;
+  word-wrap: break-word;
+}
+
+.chat-message.message-received {
+  background: #fff;
+  border-radius: 0 5px 5px 5px;
+  float: left;
+}
+
+.chat-message.message-received:after {
+  border-width: 0 10px 10px 0;
+  border-color: transparent #fff transparent transparent;
+  top: 0;
+  left: -10px;
+}
+
+.chat-message.message-sent {
+  background: #e1ffc7;
+  border-radius: 5px 0 5px 5px;
+  float: right;
+}
+
+.chat-message.message-sent:after {
+  border-width: 0 0 10px 10px;
+  border-color: transparent transparent transparent #e1ffc7;
+  top: 0;
+  right: -10px;
+}
+
+.message-time {
+  color: rgba(0, 0, 0, .45);
+  font-size: 11px;
+  display: inline-block;
+  float: right;
+  padding: 0 0 0 7px;
+  position: relative;
+  bottom: -4px;
+}
+
+.chat-message-form {
+  display: flex;
+  margin-top: 10px;
+}
+
+.chat-message-form textarea {
+  flex: 1;
+  padding: 10px;
+}
+
+.chat-message-form button {
+  padding: 10px;
+}
+
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  z-index: 1000;
+  display: none;
+}
+
+.popup h3 {
+  margin-top: 0;
+}
+
+#user-list {
+  max-height: 100vh;
+  margin: -100px 0;
+  padding: 100px 0;
+  overflow-y: auto;
+}
+
+.user-item {
+  cursor: pointer;
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.user-item:hover {
+  background-color: #f0f0f0;
+}

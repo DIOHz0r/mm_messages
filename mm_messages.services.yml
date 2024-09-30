@@ -1,0 +1,15 @@
+services:
+  mm_messages.message_service:
+    class: Drupal\mm_messages\Service\MessageService
+    arguments: [ '@database', '@current_user', '@entity_type.manager' ]
+
+  mm_messages.twig_extension:
+    class: Drupal\mm_messages\MmMessagesTwigExtension
+    tags:
+      - { name: twig.extension }
+
+  mm_messages.drush_command:
+    class: Drupal\mm_messages\Drush\Commands\UnreadMessagesCommand
+    arguments: ['@mm_messages.message_service']
+    tags:
+      - { name: drush.command }

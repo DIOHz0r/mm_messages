@@ -1,0 +1,31 @@
+{{ attach_library('mm_messages/mm_messages') }}
+<div class="mm-messages-chat-container">
+  <div class="chat-sidebar">
+    <h2>Chats</h2>
+    <button class="add-chat-button">Add New Chat</button>
+    <div class="chat-list">
+      {% for chat in chats %}
+        {% include '@mm_messages/mm-messages-chat-item.html.twig' %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="chat-history" id="chat-history">
+    {% include '@mm_messages/mm-messages-chat-history.html.twig' %}
+  </div>
+
+  <div id="user-selection-popup" class="popup" style="display: none;">
+    <h3>Select User</h3>
+    <div id="user-list">
+      {% for chat in chats_available %}
+        <div class="user-item" data-user-id="{{ chat.uid }}">
+          {% if chat.user_image %}
+            <img src="{{ chat.user_image }}" alt="{{ chat.user_name }}" class="user-image">
+          {% endif %}
+          <span class="user-name">{{ chat.user_name }}</span>
+        </div>
+      {% endfor %}
+    </div>
+    <button id="close-popup">Close</button>
+  </div>
+</div>

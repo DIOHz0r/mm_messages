@@ -1,0 +1,11 @@
+<div class="conversation-container">
+  {% for message in messages %}
+    <div class="chat-message {% if message.sender_id == user.id %}message-sent{% else %}message-received{% endif %}">
+      {% if message.user_image %}
+        <img src="{{ message.user_image }}" alt="{{ message.sender_name }}" class="user-image">
+      {% endif %}
+      <strong>{{ message.sender_name }}:</strong><br>{{ message.message }}
+      <span class="message-time">{{ message.timestamp|format_time }}</span>
+    </div>
+  {% endfor %}
+</div>

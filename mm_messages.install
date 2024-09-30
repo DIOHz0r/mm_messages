@@ -1,0 +1,98 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the mm_messages module.
+ */
+
+use Drupal\user\Entity\Role;
+
+/**
+ * Implements hook_schema().
+ */
+function mm_messages_schema() {
+  $schema['mm_messages'] = [
+    'fields' => [
+      'message_id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary key.',
+      ],
+      'sender_id' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'User ID of the sender.',
+      ],
+      'receiver_id' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'User ID of the receiver.',
+      ],
+      'message' => [
+        'type' => 'text',
+        'not null' => TRUE,
+        'description' => 'The message content.',
+      ],
+      'timestamp' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'Time when the message was sent.',
+      ],
+      'is_read' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Mark to know if the message is read.',
+      ],
+    ],
+    'primary key' => ['message_id'],
+    'indexes' => [
+      'sender_receiver' => ['sender_id', 'receiver_id'],
+    ],
+    'foreign keys' => [
+      'sender_fk' => [
+        'table' => 'users_field_data',
+        'columns' => ['sender_id' => 'uid'],
+      ],
+      'receiver_fk' => [
+        'table' => 'users_field_data',
+        'columns' => ['receiver_id' => 'uid'],
+      ],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function mm_messages_install() {
+  $role = Role::load('authenticated');
+
+  if ($role) {
+    $role->grantPermission('access mm_messages chat');
+    $role->save();
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function mm_messages_uninstall(): void {
+  $schema = Drupal::database()->schema();
+
+  if (!$schema->tableExists('mm_messages')) {
+    return;
+  }
+  $schema->dropTable('mm_messages');
+
+  // remove saved persmissions
+  $role = Role::load('authenticated');
+
+  if (!$role) {
+    return;
+  }
+  $role->revokePermission('access mm_messages chat');
+  $role->save();
+}

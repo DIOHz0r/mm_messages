@@ -1,0 +1,7 @@
+name: 'Messages module'
+type: module
+description: Custom chat module
+package: Custom
+core_version_requirement: ^8 || ^9
+dependencies:
+  - drupal:user

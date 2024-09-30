@@ -1,0 +1,11 @@
+<div class="chat-item" data-user-id="{{ chat.receiver_id }}">
+  {% if chat.user_avatar %}
+    <img src="{{ chat.user_avatar }}" alt="{{ chat.user_name }}" class="user-image">
+  {% endif %}
+  <span class="user-name">{{ chat.user_name }}</span>
+  <span class="last-message">{{ chat.last_message }}</span>
+  <span class="timestamp">{{ chat.timestamp|format_time }}</span>
+  {% if chat.unread == true %}
+    <span class="unread-indicator">Unread</span>
+  {% endif %}
+</div>

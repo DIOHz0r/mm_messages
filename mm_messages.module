@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for mm_messages module.
+ */
+
+/**
+ * Helper function to format timestamps.
+ */
+function mm_messages_format_time($timestamp): string {
+  $current_time = Drupal::time()->getCurrentTime();
+  $diff = $current_time - $timestamp;
+
+  if ($diff < 86400) { // Less than a day
+    return date('H:i', $timestamp);
+  }
+  $days_ago = floor($diff / 86400);
+
+  return t('@days day(s) ago', ['@days' => $days_ago]);
+}
+
+/**
+ * Implements hook_theme().
+ */
+function mm_messages_theme($existing, $type, $theme, $path): array {
+  return [
+    'mm_messages_chat' => [
+      'variables' => [
+        'chats' => NULL,
+        'chats_available' => NULL,
+        'form' => NULL,
+      ],
+      'template' => 'mm-messages-chat',
+    ],
+    'mm_messages_chat_history' => [
+      'variables' => [
+        'messages' => NULL,
+        'receiver_name' => NULL,
+        'form' => NULL,
+      ],
+      'template' => 'mm-messages-chat-history',
+    ],
+    'mm_messages_chat_item' => [
+      'variables' => [
+        'chat' => NULL,
+      ],
+      'template' => 'mm-messages-chat-item',
+    ],
+    'mm_messages_chat_balloons' => [
+      'variables' => [
+        'messages' => NULL,
+      ],
+      'template' => 'mm-messages-chat-balloons',
+    ],
+  ];
+}
